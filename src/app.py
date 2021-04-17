@@ -7,7 +7,7 @@ from flask_marshmallow import Marshmallow
 app = Flask(__name__)
 
 # configuracion mysql
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://nekdress:root@localhost/api'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sexp2p@192.168.0.111/apirest_python_jwt'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -48,7 +48,7 @@ class User(db.Model):
 
 
 # Crear el modelo de la tabla
-db.create_all()
+# db.create_all()
 
 # Esquema para ingresar los datos a la base de datos tabla Task
 
@@ -122,7 +122,7 @@ def login():
 # api/task
 
 
-@app.route('/api/tasks', methods=['POST'])
+@app.route('/api/task', methods=['POST'])
 def create_task():
     title = request.json['title']
     description = request.json['description']
@@ -134,7 +134,7 @@ def create_task():
     return task_schema.jsonify(new_task)
 
 
-@app.route('/api/tasks', methods=['GET'])
+@app.route('/api/task', methods=['GET'])
 @jwt_required()
 def get_tasks():
     all_tasks = Task.query.all()
@@ -142,14 +142,14 @@ def get_tasks():
     return jsonify(result)
 
 
-@app.route('/api/tasks/<id>', methods=['GET'])
+@app.route('/api/task/<id>', methods=['GET'])
 def get_task(id):
     task = Task.query.get(id)
     result = task_schema.dump(task)
     return jsonify(result)
 
 
-@app.route('/api/tasks/<id>', methods=['PUT'])
+@app.route('/api/task/<id>', methods=['PUT'])
 def update_task(id):
     task = Task.query.get(id)
 
@@ -163,7 +163,7 @@ def update_task(id):
     return task_schema.jsonify(task)
 
 
-@app.route('/api/tasks/<id>', methods=['DELETE'])
+@app.route('/api/task/<id>', methods=['DELETE'])
 def delete_task(id):
     task = Task.query.get(id)
     db.session.delete(task)
