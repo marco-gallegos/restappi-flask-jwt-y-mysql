@@ -6,6 +6,8 @@
 #
 click==7.1.2
     # via flask
+flask-cors==3.0.10
+    # via -r requirements.in
 flask-jwt-extended==4.1.0
     # via -r requirements.in
 flask-marshmallow==0.14.0
@@ -15,6 +17,7 @@ flask-sqlalchemy==2.5.1
 flask==1.1.2
     # via
     #   -r requirements.in
+    #   flask-cors
     #   flask-jwt-extended
     #   flask-marshmallow
     #   flask-sqlalchemy
@@ -37,7 +40,9 @@ pyjwt==2.0.1
 pymysql==1.0.2
     # via -r requirements.in
 six==1.15.0
-    # via flask-marshmallow
+    # via
+    #   flask-cors
+    #   flask-marshmallow
 sqlalchemy==1.4.9
     # via
     #   -r requirements.in

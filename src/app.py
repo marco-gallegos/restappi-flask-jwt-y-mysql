@@ -3,8 +3,12 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+# Uso de cors para publicarla
+CORS(app=app)
 
 # configuracion mysql
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sexp2p@192.168.0.111/apirest_python_jwt'
